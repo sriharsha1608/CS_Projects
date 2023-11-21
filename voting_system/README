@@ -39,3 +39,9 @@ pip install pycryptodome
 
 used AES method to encrypt 
 used MD5 for hashing
+
+
+For creating certificates:
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+
+-node for no passphrase accept
