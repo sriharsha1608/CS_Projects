@@ -1,0 +1,26 @@
+Sri Harsha Tanamala
+stanama1@binghamton.edu
+python3
+
+yes tested on remote
+
+
+one way
+cd server
+python3 sftpserv.py portnumber &
+
+and navigate to client
+python3 sftpcli.py remote__(01-07).cs.binghamton.edu portnumber
+
+
+other way
+cd server
+python3 sftpserv.py portnumber
+
+in other terminal
+cd client
+python3 sftpcli.py remote--(01-07).cs.binghamton.edu portnumber
+
+next the commands to test
+
+remote number based on the server running
