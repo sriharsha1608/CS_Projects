@@ -1,0 +1,41 @@
+Sri Harsha Tanamala
+stanama1@binghamton.edu
+python3
+
+yes tested on remote
+
+need to install a module of Crypto for encryption use the below line command to install it.
+pip install pycryptodome
+
+voterinfo and symmetric_key file are required in server directory
+
+one way
+cd server
+python3 serv.py portnumber
+
+in other terminal
+cd client
+python3 cli.py remote--(00-07).cs.binghamton.edu portnumber
+
+another way
+cd server
+python3 serv.py portnumber &
+
+and navigate to client
+python3 cli.py remote--(00-07).cs.binghamton.edu portnumber
+
+next the commands to test
+
+remote number based on the server running
+
+
+B-number B00979277
+
+Tested on port (9277) as per professor instructions
+
+need to install a module of Crypto use the below line command to install it.
+pip install pycryptodome
+
+
+used AES method to encrypt 
+used MD5 for hashing

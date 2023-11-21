@@ -1,0 +1,63 @@
+An iterative secure election booth consisting of a voting server and multiple clients which is like sftp server connection
+The election booth meets the following requirements:
+No one can vote more than once.
+No one can determine the candidate for whom anyone else voted.
+
+The implementation should use SSL to provide a secure way for people to vote online.
+A public-key certificate needs to be generated for the server this point I will take care.
+
+Assume that there are 3 voters (Alice, Bob, Tom) and 2 candidates (Chris and Linda).
+
+The voters connect to the server to vote.
+
+The server maintains a file with name passwords which contains voter info that stores the name of the voter, the voter registration number, and the encrypted password.
+
+Name  Registration number	encrypted password
+Alice 1123456 			E(K, H(1234))
+Bob   1138765 			E(K, H(5678))
+Tom   1154571 			E(K, H(9012))
+
+You need to randomly generate symmetric key K and it is saved in a file. Which is used to encrypt and decrypt 
+
+where you can use implementations of AES or 3DES for encryption and decryption 
+You can use SHA1 or MD5 for Hash.
+
+1) The voter invokes the client to connect to the server.
+
+2) The client prompts the voter to enter his or her name, voter registration number, and password, and sends them to the server
+
+3) The server verifies the user’s name and registration number.
+If they are correct, then the server computes E(K, H(<user’s password>)) and compares it against the encrypted password saved in voterinfo. If the password is correct, then the client displays the following Main menu to the user and prompts the user to select an action to perform:
+Welcome <user name>!
+Please enter a number (1-3)
+1. Vote
+2. View election result
+3. My vote history
+4. Exit
+
+If any of the above information is incorrect, then the server sends 0 to the client, and the client prints “Invalid name, registration number, or password” and prompts the voter to enter the information again.
+
+4) If the voter enters “1” (i.e., Vote), then the client sends 1 to the server. The server checks if the voter has voted based on file “history”.
+If the file does not exist or if the user has not voted, then the server sends 1 to the client and the client displays the following:
+Candidates: (enter 1 or 2)
+1. Chris
+2. Linda
+Otherwise, the server sends 0 to the client and the client prints “you have already voted” and displays the Main menu.
+
+5) After the user enters the number, the client sends the number to the server. The server then updates the result in file result which has the following Format:
+Chris <the total number of votes>
+Linda <the total number of votes>
+
+The server also adds the name of the voter and the date and time when the voter votes to a file history that has the following format (if the file history does not exist, then create the file):
+<voter name> <date and time when the voter votes>
+
+6) If the user enters “2” (i.e. View election result), then the server checks if the total number of votes is equal to the total number of voters.
+If not, the server sends 0 to the client and the client displays “The result is not available”
+Otherwise, the server sends the client the candidate who wins the election and the number of votes each candidate got. The client then displays the results with the following format:
+<Candidate’s name> Win
+Chris <the total number of votes>
+Linda <the total number of votes>
+
+7) If the user enters “3” (i.e. My vote history), then the server retrieves the corresponding entry in file “history” and sends the entry to the client. The client then displays the entry and then the Main Menu to the user.
+
+8) If the user enters “4”, then client terminates.
