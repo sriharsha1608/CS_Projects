@@ -1,0 +1,13 @@
+# Generate a private key (bank_private_key.pem)
+openssl genpkey -algorithm RSA -out bank_private_key.pem
+
+# Generate a corresponding public key (bank_public_key.pem)
+openssl rsa -pubout -in bank_private_key.pem -out bank_public_key.pem
+
+python3 -m venv myenv
+source myenv/bin/activate
+
+pip install pycryptodome
+
+
+deactivate
