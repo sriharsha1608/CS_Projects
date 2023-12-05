@@ -44,7 +44,7 @@ while True:
 
     # Step 4: Receive and display the server's response
     response = atm_socket.recv(256).decode()
-    print(response)
+    print("hello:",response," ",len(response))
 
     if response == "ID and password are correct":
         while True:
