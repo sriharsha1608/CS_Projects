@@ -1,9 +1,3 @@
-Sri Harsha Tanamala
-stanama1@binghamton.edu
-python3
-
-yes tested on remote
-
 need to install a module of Crypto for encryption use the below line command to install it.
 pip install pycryptodome
 
